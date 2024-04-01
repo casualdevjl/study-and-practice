@@ -35,9 +35,37 @@ function checkEmail(couldbeanything) {
     }
 }
 
+function checkPassword(anyinput) {
+    const formControl = anyinput.parentElement;
+
+    if (anyinput.value === "" || anyinput.value.length < 6) {
+        formControl.className = "form-control error"
+        const smallPassword = form.querySelector('#error-message-password');
+        smallPassword.innerText = "Password must be at least 6 characters long";
+    } else {
+        formControl.className = "form-control success";
+    }
+}
+
+function confirmPassword(theotherinput) {
+    const formControl = theotherinput.parentElement;
+
+    if (theotherinput.value === "" || theotherinput.value !== password.value) {
+        formControl.className = "form-control error";
+        const smallPassword2 = form.querySelector('#error-message-password2');
+        smallPassword2.innerText = "Passwords do not match";
+    } else {
+        formControl.className = "form-control success";
+        alert('Form submitted succesfully!'); // try if would work
+    }
+}
+
+
 // Submit event listener for form
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     checkUsername(username);
     checkEmail(email);
+    checkPassword(password);
+    confirmPassword(password2);
 });
